@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bg-Gradient Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        html{
 
-        }
-        body{
+        body {
             width: 100%;
-            height:100vh;
+            height: 100vh;
             background-image: linear-gradient(
                 to right top,
                 #051937,
@@ -27,35 +27,69 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            transition: background 0.5s ease-in-out;
         }
-        section{
+
+        section {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            gap: 3.2rem;
+            gap: 2rem;
+            max-width: 400px;
         }
 
-        button{
-
-        }
-        #myButton{
-            background-color: rgb(158, 167, 158);
-            color: rgb(34,34,34);
-        }
-        #myButton2{
-            background-color: rgb(223, 217, 232);
-            color: rgb(34,34,34);
-        }
-        .copyCode{
-            margin: 0 auto;
-            display:block;
-            line-height: 1.4;
-            letter-spacing: 0.2px;
-            border-left: 3px solid #fff;
-            background-color: rgba(189, 189, 189, 0.1);
-            padding: 15px 8px 15px 17px;
+        button {
+            padding: 12px 20px;
+            border: none;
             border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #myButton {
+            background-color: #051937;
+            color: white;
+        }
+
+        #myButton2 {
+            background-color: #008793;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        h2 {
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .copyCode {
+            margin: 0 auto;
+            display: block;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 12px 10px;
+            border-left: 4px solid white;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .copyCode:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -67,21 +101,22 @@
         </div>
         <h2>Copy your code here</h2>
         <div class="copyCode">
-            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198))
+            background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
         </div>
     </section>
+
     <script>
         let btn1 = document.getElementById("myButton");
         let btn2 = document.getElementById("myButton2");
         let copyDiv = document.querySelector(".copyCode");
         let rgb1 = "#004773";
         let rgb2 = "#54d542";
-        //todo to get the default color we can add the actual color here
+
         const hexValues = () => {
             let myHexValues = "0123456789abcdef";
             let colors = "#";
-            for(let i=0; i<6; i++){
-                colors = colors + myHexValues[ Math.floor(Math.random() * 16)];
+            for (let i = 0; i < 6; i++) {
+                colors += myHexValues[Math.floor(Math.random() * 16)];
             }
             return colors;
         };
@@ -90,26 +125,25 @@
             rgb1 = hexValues();
             console.log(rgb1);
             btn1.innerText = rgb1;
-            document.body.style.backgroundImage = `linear-gradient(to right,${rgb1}, ${rgb2})`;
-
-            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2}))`;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2});`;
         };
 
         const handleButton2 = () => {
             rgb2 = hexValues();
             console.log(rgb2);
             btn2.innerText = rgb2;
-            document.body.style.backgroundImage = `linear-gradient(to right,${rgb1}, ${rgb2})`;
-
-            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2}))`;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2});`;
         };
 
-        btn1.addEventListener("click",handleButton1);
-        btn2.addEventListener("click",handleButton2);
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
 
         copyDiv.addEventListener('click', () => {
             navigator.clipboard.writeText(copyDiv.innerText);
-        })
+            alert("Copied to clipboard!");
+        });
     </script>
 </body>
 </html>
