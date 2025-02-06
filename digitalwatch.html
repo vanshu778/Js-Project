@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Watch</title>
+    <style>
+body {
+    font-family: 'Roboto Mono', monospace; 
+    background-color: #282c34; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #e6e6fa; 
+}
+.container {
+    background-color: #3d4451;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.clockHolder {
+    text-align: center;
+}
+
+.timeOptions {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; 
+}
+
+.timeOptions i {
+    cursor: pointer;
+    font-size: 1.4em; 
+    color: #a0a0a0; 
+    padding: 8px;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+}
+
+.timeOptions i:hover {
+    color: #61dafb;
+}
+.timeOptions i.active {
+    color: #61dafb; 
+}
+
+.mainDiv {
+    background-color: #21252b; 
+    color: #f0f8f9;
+    font-size: 2.5em; 
+    font-weight: normal; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); 
+    letter-spacing: 2px;
+    text-align: center; 
+    border: 4px solid #d7d733;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3); 
+    overflow: hidden;
+}
+
+.mainDiv::before {
+    content: "";
+    position: absolute;
+    bottom: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 15px;
+    background: rgba(76, 175, 80, 0.4);
+    border-radius: 50%;
+    filter: blur(5px); 
+}
+
+@media (max-width: 500px) {
+    .mainDiv {
+        font-size: 2em;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="clockHolder">
+            <div class="timeHolder">
+                <div class="timeOptions">
+                    <i class="fas fa-clock" data-title="Time"></i>
+                    <i class="fas fa-stopwatch" data-title="StopWatch"></i>
+                    <i class="fas fa-clock" data-title="CountDown"></i>
+                </div>
+                <div class="mainDiv">
+                    <p id="clock"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const currentTime = () => {
+            let curTime = new Date().toLocaleTimeString();
+            document.getElementById("clock").innerText = curTime;
+        };
+        currentTime();
+
+        const intervalId = setInterval(() =>{
+            currentTime();
+        },1000);
+
+        //setTimeout(() => clearInterval(intervalId),5000) 
+    </script>
+</body>
+</html>
