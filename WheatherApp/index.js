@@ -11,6 +11,9 @@ let w_humidity = document.querySelector(".weather_humidity");
 let w_wind = document.querySelector(".weather_wind");
 let w_pressure = document.querySelector(".weather_pressure");
 
+let citySearch = document.querySelector(".weather_search");
+
+
 // to get the actual country name
 const getCountryName = (code) => {
     return new Intl.DisplayNames([code], { type: "region" }).of(code);
@@ -34,7 +37,7 @@ const getDateTime = (dt) => {
     console.log(formatter);
     return formatter.format(curDate);
   };
-  
+
 const getWeatherData = async() => {
     const weatherUrl =`https://api.openweathermap.org/data/2.5/weather?q=pune&APPID=a5fd05c1f3d9ddfd7ad33293ea7e340e
 `;
@@ -48,6 +51,9 @@ const getWeatherData = async() => {
 
         cityName.innerHTML = `${name}, ${getCountryName(sys.country)}`;
         dateTime.innerHTML = getDateTime(dt);
+
+        w_forecast.innerHTML = weather[0].main;
+        w_icon.innerHTML = `<img src="http://openweathermap.org/img/wn/${weather[0].icon}@4x.png" />`;
 
         w_temperature.innerHTML = `${main.temp}&#176`;
         w_minTem.innerHTML = `Min: ${main.temp_min.toFixed()}&#176`;
