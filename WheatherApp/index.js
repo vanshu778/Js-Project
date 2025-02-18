@@ -45,6 +45,11 @@ const getWeatherData = async() => {
         cityName.innerHTML = `${name}, ${getCountryName(sys.country)}`;
         dateTime.innerHTML = getDateTime(dt);
 
+        w_temperature.innerHTML = `${main.temp}&#176`;
+        w_minTem.innerHTML = `Min: ${main.temp_min.toFixed()}&#176`;
+        w_maxTem.innerHTML = `Max: ${main.temp_max.toFixed()}&#176`;
+
+        
     }catch(error){
         console.log(error);
     }
