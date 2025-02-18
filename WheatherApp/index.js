@@ -37,9 +37,24 @@ const getDateTime = (dt) => {
     console.log(formatter);
     return formatter.format(curDate);
   };
+  
+  let city = "pune";
 
+  // search functionality
+  citySearch.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    let cityName = document.querySelector(".city_name");
+    console.log(cityName.value);
+    city = cityName.value;
+  
+    getWeatherData();
+  
+    cityName.value = "";
+  });
+  
 const getWeatherData = async() => {
-    const weatherUrl =`https://api.openweathermap.org/data/2.5/weather?q=pune&APPID=a5fd05c1f3d9ddfd7ad33293ea7e340e
+    const weatherUrl =`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=a5fd05c1f3d9ddfd7ad33293ea7e340e
 `;
 
     try{
